@@ -96,47 +96,32 @@
 </head>
 <body>
     <div class="container">
-        <h1>Task Manager - OOP Learning Project</h1>
+        <h1>Task Manager</h1>
         
-        <div class="status not-ready" id="systemStatus">
-            ⚠️ System Initializing...
+        <div class="section">
+            <h2>Add Task</h2>
+            <input type="text" id="taskTitle" placeholder="Task title" style="padding: 8px; width: 60%; margin: 5px;">
+            <input type="text" id="taskDesc" placeholder="Description" style="padding: 8px; width: 60%; margin: 5px;">
+            <select id="taskPriority" style="padding: 8px; margin: 5px;">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button onclick="addNewTask()">Add Task</button>
         </div>
         
         <div class="section">
-            <h2>Task Class</h2>
-            <p>This class represents a single task.</p>
-            <div id="taskControls">
-                <button onclick="testTaskClass()" disabled>Test Task Class</button>
-                <button onclick="createSampleTask()" disabled>Create Sample Task</button>
-            </div>
+            <h2>Tasks</h2>
+            <button onclick="viewAllTasks()">Show All Tasks</button>
+            <button onclick="refreshTasks()">Refresh</button>
         </div>
         
         <div class="section">
-            <h2>TaskList Class</h2>
-            <p>This class manages a collection of tasks.</p>
-            <div id="taskListControls">
-                <button onclick="testTaskListClass()" disabled>Test TaskList Class</button>
-                <button onclick="addTaskToList()" disabled>Add Task to List</button>
-                <button onclick="getAllTasks()" disabled>Get All Tasks</button>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>API Testing</h2>
-            <p>Test the backend API endpoints.</p>
-            <div id="apiControls">
-                <button onclick="testAPIConnection()" disabled>Test API Connection</button>
-                <button onclick="createTaskViaAPI()" disabled>Create Task via API</button>
-                <button onclick="getTasksViaAPI()" disabled>Get Tasks via API</button>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>Output Console</h2>
+            <h2>Output</h2>
             <div id="output">
-                Output will appear here...
+                Ready...
             </div>
-            <button onclick="clearOutput()">Clear Output</button>
+            <button onclick="clearOutput()">Clear</button>
         </div>
     </div>
 
