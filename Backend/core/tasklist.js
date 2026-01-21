@@ -3,66 +3,85 @@
  */
 class TaskList {
   constructor() {
-    // We'll initialize properties here later
+    this.tasks = [];
+    this.nextId = 1;
   }
   
-  // Factory method - will implement later
+  // Factory method - creates Task from data
   static createTaskFromData(data) {
-    // Will implement later
-    return null;
+    const Task = require('../models/task');
+    return new Task(data.id, data.title, data.description, data.completed, data.priority, data.dueDate);
   }
   
-  // CRUD operations - empty for now
+  // CRUD operations
   
+  // Adds a new task to the list
   addTask(taskData) {
-    // Will implement later
-    return null;
+    const Task = require('../models/task');
+    const newTask = new Task(this.nextId++, taskData.title, taskData.description, false, taskData.priority, taskData.dueDate);
+    this.tasks.push(newTask);
+    return newTask;
   }
   
+  // Gets a single task by ID
   getTask(id) {
-    // Will implement later
-    return null;
+    return this.tasks.find(task => task.id === id) || null;
   }
   
+  // Gets all tasks as JSON
   getAllTasks() {
-    // Will implement later
-    return [];
+    return this.tasks.map(task => task.toJSON());
   }
   
-  // Filter methods - empty for now
+  // Filter methods
   
+  // Returns only completed tasks
   getCompletedTasks() {
-    // Will implement later
-    return [];
+    return this.tasks.filter(task => task.completed).map(task => task.toJSON());
   }
   
+  // Returns only pending tasks
   getPendingTasks() {
-    // Will implement later
-    return [];
+    return this.tasks.filter(task => !task.completed).map(task => task.toJSON());
   }
   
+  // Gets tasks by priority level
   getTasksByPriority(priority) {
-    // Will implement later
-    return [];
+    return this.tasks.filter(task => task.priority === priority).map(task => task.toJSON());
   }
   
-  // Update and delete - empty for now
+  // Update and delete
   
+  // Updates a task with new data
   updateTask(id, updates) {
-    // Will implement later
-    return null;
+    const task = this.getTask(id);
+    if (!task) return null;
+    if (updates.title) task._title = updates.title;
+    if (updates.description) task._description = updates.description;
+    if (updates.priority) task._priority = updates.priority;
+    if (updates.completed !== undefined) task._completed = updates.completed;
+    task._updatedAt = new Date();
+    return task;
   }
   
+  // Deletes a task by ID
   deleteTask(id) {
-    // Will implement later
-    return false;
+    const index = this.tasks.findIndex(task => task.id === id);
+    if (index === -1) return false;
+    this.tasks.splice(index, 1);
+    return true;
   }
   
-  // Statistics - empty for now
+  // Statistics
   
+  // Returns statistics about tasks
   getStatistics() {
-    // Will implement later
-    return {};
+    return {
+      total: this.tasks.length,
+      completed: this.tasks.filter(t => t.completed).length,
+      pending: this.tasks.filter(t => !t.completed).length,
+      overdue: this.tasks.filter(t => t.isOverdue()).length
+    };
   }
 }
 
