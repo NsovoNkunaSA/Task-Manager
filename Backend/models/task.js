@@ -45,16 +45,22 @@ class Task {
   }
 }
 
+// Creates a new Task and adds it to the tasks array
+// Returns the newly created Task object
 function addTask(tasks, id, title, description = '', priority = 'medium', dueDate = null) {
   const newTask = new Task(id, title, description, false, priority, dueDate);
   tasks.push(newTask);
   return newTask;
 }
 
+// Finds and returns a single task by its ID
+// Returns null if task is not found
 function getTask(tasks, id) {
   return tasks.find(task => task.id === id) || null;
 }
 
+// Returns all tasks in the array as JSON objects
+// Converts each Task to JSON format for API responses
 function getAllTasks(tasks) {
   return tasks.map(task => task.toJSON());
 }
