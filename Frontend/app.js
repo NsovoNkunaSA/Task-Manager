@@ -62,11 +62,6 @@ function addTaskToList() {
     // Will implement when we build the TaskList class
 }
 
-function getAllTasks() {
-    logToOutput('Getting all tasks...');
-    // Will implement when we build the TaskList class
-}
-
 function testAPIConnection() {
     logToOutput('Testing API connection...');
     // Will implement when we build the API
@@ -80,6 +75,49 @@ function createTaskViaAPI() {
 function getTasksViaAPI() {
     logToOutput('Getting tasks via API...');
     // Will implement when we build the API
+}
+
+// Add new task from form inputs
+function addNewTask() {
+    const titleInput = document.getElementById('taskTitle');
+    const descInput = document.getElementById('taskDesc');
+    const prioritySelect = document.getElementById('taskPriority');
+    
+    const title = titleInput.value.trim();
+    const description = descInput.value.trim();
+    const priority = prioritySelect.value;
+    
+    if (!title) {
+        updateStatus('Please enter a task title', 'not-ready');
+        logToOutput('ERROR: Task title cannot be empty');
+        return;
+    }
+    
+    logToOutput(`Adding task: "${title}" (Priority: ${priority})`);
+    logToOutput(`Description: ${description || 'None'}`);
+    
+    // Clear inputs after adding
+    titleInput.value = '';
+    descInput.value = '';
+    prioritySelect.value = 'medium';
+    
+    updateStatus('Task added successfully!', 'ready');
+}
+
+// View all tasks
+function viewAllTasks() {
+    logToOutput('Fetching all tasks...');
+    logToOutput('--- All Tasks ---');
+    logToOutput('Task 1: Sample Task (Priority: High)');
+    logToOutput('Task 2: Another Task (Priority: Medium)');
+    logToOutput('--- End of Tasks ---');
+    updateStatus('Tasks displayed in output', 'ready');
+}
+
+// Refresh tasks
+function refreshTasks() {
+    logToOutput('Refreshing tasks...');
+    updateStatus('Tasks refreshed', 'ready');
 }
 
 // Initialize when page loads
