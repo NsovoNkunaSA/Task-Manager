@@ -24,30 +24,36 @@ class TaskList {
   }
   
   
+  // Gets a single task by ID
   getTask(id) {
     return this.tasks.find(task => task.id === id) || null;
   }
   
   
+  // Gets all tasks as JSON
   getAllTasks() {
     return this.tasks.map(task => task.toJSON());
   }
   
+  // Filter methods - empty for now
+  
+  // Returns only completed tasks
   getCompletedTasks() {
     return this.tasks.filter(task => task.completed).map(task => task.toJSON());
   }
   
   
+  // Returns only pending tasks
   getPendingTasks() {
     return this.tasks.filter(task => !task.completed).map(task => task.toJSON());
   }
   
- 
   getTasksByPriority(priority) {
     return this.tasks.filter(task => task.priority === priority).map(task => task.toJSON());
   }
   
-
+  // Update and delete - empty for now
+  
   updateTask(id, updates) {
     const task = this.getTask(id);
     if (!task) return null;
@@ -67,9 +73,9 @@ class TaskList {
     return true;
   }
   
+  // Statistics - empty for now
   
-  
-  
+  // Returns statistics about tasks
   getStatistics() {
     return {
       total: this.tasks.length,

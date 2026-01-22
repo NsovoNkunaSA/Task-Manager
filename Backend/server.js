@@ -71,10 +71,6 @@ app.get('/api/tasks/filter/pending', (req, res) => {
 app.listen(PORT, () => {
   console.log( `Server running at http://localhost:${PORT}`);
   console.log('Available endpoints:');
-  console.log('  POST   /api/tasks           - Create task');
-  console.log('  GET    /api/tasks           - Get all tasks');
-  console.log('  GET    /api/tasks/:id       - Get single task');
-  console.log('  PUT    /api/tasks/:id       - Update task');
-  console.log('  DELETE /api/tasks/:id       - Delete task');
-  console.log('  GET    /api/statistics      - Get stats');
+  console.log('  GET  /  - Welcome message');
+  // We'll list more endpoints as we create them
 });
