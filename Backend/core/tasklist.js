@@ -1,21 +1,17 @@
-/**
- * Manages a collection of Task objects
- */
+
 class TaskList {
   constructor() {
     this.tasks = [];
     this.nextId = 1;
   }
   
-  // Factory method - creates Task from data
+  
   static createTaskFromData(data) {
     const Task = require('../models/task');
     return new Task(data.id, data.title, data.description, data.completed, data.priority, data.dueDate);
   }
   
-  // CRUD operations
   
-  // Adds a new task to the list
   addTask(taskData) {
     const Task = require('../models/task');
     const newTask = new Task(this.nextId++, taskData.title, taskData.description, false, taskData.priority, taskData.dueDate);
@@ -24,13 +20,13 @@ class TaskList {
   }
   
   
-  // Gets a single task by ID
+  
   getTask(id) {
     return this.tasks.find(task => task.id === id) || null;
   }
   
   
-  // Gets all tasks as JSON
+  
   getAllTasks() {
     return this.tasks.map(task => task.toJSON());
   }
@@ -43,7 +39,7 @@ class TaskList {
   }
   
   
-  // Returns only pending tasks
+  s
   getPendingTasks() {
     return this.tasks.filter(task => !task.completed).map(task => task.toJSON());
   }
